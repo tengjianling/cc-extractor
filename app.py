@@ -58,4 +58,4 @@ def download_transactions_sheet():
     return download_excel_from_dataframe(df)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
