@@ -13,7 +13,7 @@ function Page() {
   return (
     <div className='flex justify-center'>
 
-      <div>
+      <div className='mt-4'>
         <div><span className='text-5xl font-bold my-4 text-blue-400'>Statement </span><span className='text-5xl font-bold my-4 text-blue-800'>Scanner</span></div>
         <div className='text-4xl font-bold my-4'>Upload your credit card statement here</div>
         <UploadForm setMessage={setMessage} setTransactions={setTransactions} setSuccess={setSuccess} />
