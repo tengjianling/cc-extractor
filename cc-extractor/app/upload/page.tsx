@@ -4,6 +4,7 @@ import { Transaction } from '../ui/types'
 import UploadForm from '../ui/UploadForm'
 import TransactionsTable from '../ui/TransactionsTable'
 import Loading from '../ui/Loading'
+import DownloadTransactionsSheetButton from '../ui/DownloadTransactionsSheetButton'
 
 function Page() {
   const [message, setMessage] = useState("")
@@ -21,7 +22,7 @@ function Page() {
         <div hidden={!success}>
           <TransactionsTable transactions={transactions} />
           {/* <SendToGoogleSheetButton transactions={transactions} /> */}
-          {/* <DownloadTransactionsSheetButton transactions={transactions} /> */}
+          <DownloadTransactionsSheetButton transactions={transactions} />
         </div>
       </div>
     </div>
