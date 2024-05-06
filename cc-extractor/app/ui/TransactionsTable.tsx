@@ -7,7 +7,7 @@ interface TransactionsTableProps {
 
 function TransactionsTable({ transactions }: TransactionsTableProps) {
   return (
-    <table className='border-collapse'>
+    <table className='border-collapse mb-10'>
       <thead>
         <tr>
           <th className='border p-3'>Description of Transaction</th>
