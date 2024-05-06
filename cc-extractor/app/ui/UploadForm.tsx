@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Transaction } from './types'
 import UploadField from './UploadField'
 import DropdownField from './DropdownField'
+import Loading from './Loading'
 
 interface UploadFormProps {
   setMessage: React.Dispatch<React.SetStateAction<string>>,
@@ -12,6 +13,7 @@ interface UploadFormProps {
 function UploadForm({ setMessage, setTransactions, setSuccess }: UploadFormProps) {
   const [statementFile, setStatementFile] = useState<File | null>(null)
   const [bank, setBank] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -21,8 +23,10 @@ function UploadForm({ setMessage, setTransactions, setSuccess }: UploadFormProps
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     if (!statementFile) {
       alert("Please upload a file")
+      setIsLoading(false)
       return
     }
     const formData = new FormData()
@@ -40,6 +44,9 @@ function UploadForm({ setMessage, setTransactions, setSuccess }: UploadFormProps
         setMessage(responseJson.message)
         setSuccess(responseJson.success)
       })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
   return (
     <form action="" method='post' onSubmit={handleSubmit}>
@@ -52,7 +59,7 @@ function UploadForm({ setMessage, setTransactions, setSuccess }: UploadFormProps
         <option value="HSBC">HSBC</option>
       </select>
       <button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-4 rounded">Submit</button>
-
+      {isLoading && <Loading />}
     </form>
   )
 }
