@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Transaction } from './types'
+import UploadField from './UploadField'
+import DropdownField from './DropdownField'
 
 interface UploadFormProps {
   setMessage: React.Dispatch<React.SetStateAction<string>>,
@@ -41,15 +43,16 @@ function UploadForm({ setMessage, setTransactions, setSuccess }: UploadFormProps
   }
   return (
     <form action="" method='post' onSubmit={handleSubmit}>
-      <label>Upload file: </label>
-      <input className='m-2' type="file" onChange={handleFileUpload} />
-      <label>Bank: </label>
-      <select className='border' name="bank" id="bank" onChange={(e) => setBank(e.target.value)}>
+      <UploadField handleFileUpload={handleFileUpload} />
+
+      <label className='text-base text-gray-500 font-semibold mb-2 block'>Bank: </label>
+      <select className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' name="bank" id="bank" onChange={(e) => setBank(e.target.value)}>
         <option value="">Select bank</option>
         <option value="UOB">UOB</option>
         <option value="HSBC">HSBC</option>
       </select>
       <button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-4 rounded">Submit</button>
+
     </form>
   )
 }
